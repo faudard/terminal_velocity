@@ -1,0 +1,289 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{geometry}
+\usepackage[utf8]{inputenc} % pour la prise en compte des accents
+%\usepackage[latin1]{inputenc}  
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+%\usepackage[round]{natbib}
+\usepackage{natbib}
+%\usepackage{chapterbib}
+\usepackage{amsmath}           
+\usepackage{amssymb}           
+\usepackage{tabularx}          
+\usepackage{xcolor} 
+\usepackage{graphicx}          
+\usepackage{longtable}       
+\usepackage{fancyhdr}          
+\usepackage{subfigure} 
+\usepackage{lastpage}
+
+\usepackage{fancybox}
+%\usepackage[french]{varioref} 
+%\usepackage[french]{babel}
+\usepackage{vmargin}
+%\setmarginsrb{2.5cm}{0.5cm}{2.5cm}{1.5cm}{1cm}{1cm}{1cm}{1.5cm}
+\usepackage{hyperref}
+\pagestyle{fancy} 
+
+
+\usepackage{vector}
+
+\usepackage{rotating}
+\usepackage{multirow}
+
+%\usepackage{supertabular}
+
+    
+\usepackage{appendix}
+
+\newcommand{\eunit}[1]{\ensuremath{[~\mathrm{#1}~]}}
+\newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}}
+
+\begin{document}
+
+ \fancyhead[LE,RO]{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{section:Forces_applied_on_isolated_particle}
+%
+\section{Forces applied on isolated particle}
+%
+  
+\citet{Maxey1983} and \citet{Gatignol1983} carried out a rigorous derivation of the equation of motion of a small isolated particle by a perturbation method. Many forces are exerted on a particle among which: the buoyancy, drag, history, added mass, Tchen or even lift force. Within the framework of a solid particle in a movement of pure translation in air, and whose particle density is much higher than air density ($\rho_p >> \rho_f$), then the forces exerted on the particle are reduced only to the forces of buoyancy and drag.
+%
+The buoyancy force comes from the density difference between the particle and the surrounding air so it takes the form:
+\begin{equation}
+\bvec{F_G} = ( m_{f} - m_{p} ) \bvec{g} 
+\label{eq:buoyancy}
+\end{equation}
+In the case of a free-falling granular, the gravity force will be one the major contribution to the movement of particles.
+
+For its part, the drag force is due to the gas viscous friction on the surface of the particle. It is expressed as follows:
+
+\begin{equation}
+\bvec{F_D} = \frac{1}{2} C_d  S \rho_{f} || \bvec{u}_{f@p} - \bvec{u}_p || (\bvec{u}_{f@p} - \bvec{u}_p) \label{eq:drag_force}
+\end{equation}
+$\bvec{u}_{f@p} - \bvec{u}_p$ is the relative velocity between the particle and the fluid, with $\bvec{u}_p$ the velocity located at the mass center of the particle, and $\bvec{u}_{f@p}$ the velocity of undisturbed at the same point. 
+
+According to \citet{Clift1978}, the drag coefficient $C_d$ can be depend on the Reynolds number:
+\begin{equation}
+Re_p = \frac{|\bvec{u}_{f@p} - \bvec{u}_{p} |   d_p  }{\nu_f} \ .
+\end{equation}
+The Reynolds number represents the ratio of inertial forces to viscous forces.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Drag coefficient modelling}
+\label{section:Drag_coefficient_modelling}
+%
+Pour de faibles nombres de Reynolds ($Re_p\ll 1$), \citet{Stokes1851} obtient une valeur analytique du coefficient de traînée:
+\begin{equation}
+C_d = \frac{24}{Re_p}
+\label{eq:stokes}
+\end{equation}
+
+When the Reynolds number increases this relation is no longer valid, indeed at higher value the flow are no longer symetric (likes oscillating boundary-layer flows, turbulence, ...). So is necessary to model the drag coefficient from experimental results or numerical simulations.
+There are many correlations to extend the drag coefficient, the semi-empirical correlation defined by \citet{Schiller1935} is one of the most used, it is written in the following form:
+
+\begin{equation}
+C_d = 
+\left\lbrace
+\begin{array}{l l } 
+  \frac{24}{Re_p} (1+0.15 Re_p^{0.687}) & Re_p < 1000 \\
+   0.44 & Re_p \ge 1000 
+\end{array} \right.
+\label{eq:schiller_naumann}
+\end{equation}
+%
+\begin{figure}[!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{figure/schiller.png}
+\caption{Comparison of the Sokes' law \eqref{eq:stokes} and the \citet{Schiller1935}\eqref{eq:schiller_naumann} equation. }
+\label{fig:schiller}  
+\end{figure} 
+ %
+The figure \ref{fig:schiller} shows the comparison of Stokes' law \eqref{eq:stokes} and the equation of \citet{Schiller1935} \eqref{eq:schiller_naumann}. Beyond unity, Stokes' law \eqref{eq:stokes} no longer follows the experiment while that of \citet{Schiller1935} is in good agreement with the experimental results, except when we reach the point of dropout.
+
+ 
+For dense environments \citet{Wen1965} propose the correlation,
+\begin{equation}
+C_d^{WY} = \left\lbrace
+\begin{array}{l l } 
+\frac{24}{Re_p} \alpha_f^{-1.7} (1+0.15 Re_p^{0.687}) & Re_p < 1000 \\ [10pt]
+0.44 \alpha_f^{-1.7} & Re_p \ge 1000 
+\end{array} \right.
+\end{equation}
+where $\alpha_f$ is introduced to take into account the effect of occupation of the particles volume. Thus the particulate Reynolds number is also modified: 
+\begin{equation}
+Re_p = \frac{\alpha_f|\bvec{u}_{f@p} - \bvec{u}_{p} |   d_p  }{\nu_f} \ .
+\end{equation}
+The correlation of \citet{Wen1965} is an extension of \citet{Schiller1935} for dense media.
+En 1952, \citet{Ergun1952} propose pour des milieux denses :
+\begin{equation}
+C_d^{Ergun} = (1-\alpha_p) \frac{200}{Re_p} + \frac{7}{3}
+\label{eq:ergun_drag}
+\end{equation}
+%
+Finally \citet{Gobin2003} propose another form of the drag coefficient which is a combination of the correlation \citet{Wen1965} and \citet{Ergun1952} :
+\begin{equation}
+C_d = \left\lbrace
+\begin{array}{l l } 
+C_d^{WY} & \alpha_p \ge 0.7 \\
+ min(C_d^{WY},C_d^{Ergun}) & \alpha_p <  0.7
+\end{array} \right.
+\end{equation}
+
+
+This last correlation is used for the numerical simulation of dense fluidized bed. It was validated by a comparisons of bed heights obtained numerically and those measured on a pilot reactor. Figure \ref{fig:alpha_Cd_100} shows the evolution of the drag coefficient as a function of the volume fraction of the particles. Following Ergun's law, the drag coefficient increases with the volume fraction following Wen \& Yu's law until reaching a maximum close to $\alpha_p \thickapprox $ 0.5 for the Reynolds numbers of 10 and 100.  When the flow is fast the coefficient of drag increases rapidly but remains governed by the law of Wen \& Yu.
+
+\begin{figure}[!tb]
+\centering
+%
+\includegraphics[width=0.9\textwidth]{figure/alpha_Cd_100.png}
+%
+\caption{Evolution of the drag coefficient as a function of the volume fraction of the particles for the different Reynolds number laws 10, 100 and 500.}
+\label{fig:alpha_Cd_100}  
+\end{figure} 
+
+The drag force apply on an isolated particle is not the same when you have several close particle (clustering) due to the crowding effect. Currently, this effect appear only with the volume fraction. So in numerical point of view that means it's an average in cell, in reallity the friction of the air exerted will be different on each particle, we must be aware this is an hypothesis and could be gives unaccurate results for hightly anisotropic particle media and polydisperse cases.
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Terminal velocity $V_T$}
+\label{section:Terminal_velocity}
+%
+Terminal velocity  is obtained with the trajectory formula in steady state ($d/dt$ = 0), which is expressed with the formulas of the drag \eqref{eq:drag_force} and  buoyancy \eqref{eq:buoyancy} forces: 
+%
+%
+\begin{equation}
+m_{p}  \frac{d \bvec{u}_p}{dt} =  C_d (\frac{\pi d_p^{2}}{8})\rho_{f} || \bvec{u}_{f@p} - \bvec{u}_{p} || (\bvec{u}_{f@p} - \bvec{u}_{p}) 
++ ( m_{f} - m_{p} ) \bvec{g} 
+\label{eq:vit_terminal}
+\end{equation}
+%
+Wich gives us:
+%
+\begin{equation}
+C_d \frac{\pi\rho_{f} d_p^{2}}{8} V_T^2 = \frac{4}{3} \pi \left(\frac{d_p}{2}\right)^{3} (\rho_{p} - \rho_f) \bvec{g}  
+\end{equation}
+%
+where we consider that we reach the terminal velocity limit noted $V_T$, where the Reynolds number terminal $ Re_ {pT} $ is written:
+%
+\begin{equation}
+Re_{pT} = \frac{\rho_{f} \bvec{V}_T d_p }{\mu_{f}} 
+\end{equation}
+%
+allowing to rewrite the equation \eqref{eq:vit_terminal} in the following form:  
+%
+\begin{equation}
+C_d Re_{pT}^2 = \frac{4}{3} Ga
+\label{eq:galresol}
+\end{equation}
+%
+where $Ga$ corresponds to the dimensionless number of Galileo (or Archimedes number) which is expressed:
+%
+\begin{equation}
+  Ga = \frac{(d_p)^3 \bvec{g} ( \rho_{p} - \rho_{f} ) \rho_{f}}{\mu_{f}^2} 
+\end{equation}
+%
+To get the terminal velocity, we need to know the drag coefficient. To do this, we use the different correlations seen in the previous section. For example, by replacing the drag coefficent by the Sokes' law \eqref{eq:stokes} in the equation \eqref{eq:galresol}: 
+\begin{equation}
+Re_{pT} = \frac{1}{18}Ga~~~~\Rightarrow~~~~V_T = \frac{1}{18} \frac{d_p^2 g}{\mu_f} (\rho_p - \rho_f)
+\end{equation}
+%
+With the correlation of  \citet{Schiller1935} \eqref{eq:schiller_naumann} (for higher Reynolds numbers), the equation  \eqref{eq:galresol}, becomes: 
+\begin{equation}
+   \frac{4}{3Re_{pT}^2 } Ga = \frac{24}{Re_{pT}}(1+0.15Re_{pT}^{0.687})
+   \label{eq:raphson_solve}
+\end{equation}
+
+From this last expression \ref{eq:raphson_solve} the terminal velocity can be solved with a Newton-Raphson method.
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Validation}
+\label{section:validation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %
+ \begin{figure}[!tb]
+  \centering
+ \includegraphics[width=0.8\textwidth]{figure/belkhafa_chute.png}
+   \caption{Velocity evolution of a water droplet fall in air according to the height, figure is extracted of the  \citet{belkhelfa2011} thesis. }
+  \label{fig:belkhafa_chute}
+ \end{figure}
+ %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ In order to validate the terminal fall velocity, we compare the solution obtained numerically to an experiment conducted by \citet{belkhelfa2011}. His experience shows the experimental evolution of a free fall velocity of a spherical water drop, with the consideration the evaporation is relatively weak (see Figure \ref{fig:belkhafa_chute}). We observe that the drop of diameter of 364 \unit{\mu m}, reaches its final velocity over a distance of 50 \unit{cm} and the drop with a diameter of 454 \unit {\mu m} reaches it around 100 \unit{cm}. The prediction is satisfactory (see Table \ref {tab:prediction_vitesse}), which validates the previous hypotheses on the equation of the trajectory.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\begin{figure}
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+   \hline
+   diameter (\unit{\mu m}) &  364  & 454  & 590 & 615 & 726 \\
+   \hline
+   exp. &  1.427 & 1.854 & 2.432 &  2.533 &  2.923\\
+   \hline
+   run  & 1.458 & 1.839 &  2.381 & 2.477 &  2.892\\
+   \hline
+   error  & 2 $\%$  &  8.01$\%$  &  2$\%$ & 2.2$\%$ &  1$\%$ \\
+   \hline  
+\end{tabular}
+\caption{Comparison between the experiment and the numerical simulations for the terminal velocity of the liquid particle fall fall of the liquid particle fall in air.} 
+\label{tab:prediction_vitesse}
+\end{figure}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In conclusion, the prediction of the terminal velocity depends on several parameters, namely: the nature of the particle, the physical properties of the continuous and the dispersed phases and the Reynolds number which is directly linked to the drag coefficient.
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage
+\section{Relaxation time of the particle $\tau_p$}
+\label{section:Relaxation_time_of_the_particle}
+The relaxation time of the particle $ \tau_p$ corresponds to the response time of the particle to the fluctuations of the carrier fluid defined in the following form:
+
+\begin{equation}
+\frac{d \bvec{u}_p}{dt}  = 
+- \frac{\bvec{u}_{f@p} - \bvec{u}_p}{\tau_p} 
++ \frac{ (m_p -m_f) \bvec{g} }{m_p}  
+\label{eq:tau_general}
+\end{equation}
+
+This time $ \tau_p $ is identified with the equation of the dynamics with the drag force \eqref{eq:drag_force} and  buoyancy force \eqref{eq:buoyancy}:
+
+
+ \begin{equation}
+ \tau_p = 
+ \frac{m_p}{\frac{\pi d_p^2}{8} \rho_{f} C_d | \bvec{u}_{f@p} - \bvec{u}_p|} 
+ =    \frac{ 4 d_p }{3 C_d | \bvec{u}_{f@p} - \bvec{u}_p|} \frac{\rho_{p}}{\rho_{f}}
+ \end{equation}
+ %
+In the case of Stokes' law ($Re_p \ll 1$), the drag coefficient  \ref{eq:stokes} is expressed as $C_d = 24/Re_p$, without the gravity the equation is reduced to:
+
+\begin{eqnarray}
+ \dfrac{d \bvec{u}_p}{dt}  = - \frac{\bvec{u}_{f@p} - \bvec{u}_p}{\tau_p} & \Rightarrow & 
+    \frac{1 \pi d_p^{6}\rho_{p}}{3} \dfrac{d \bvec{u}_p}{dt} = 
+3 \pi \mu_{f} d_p ( \bvec{u}_{f@p} - \bvec{u}_p )
+\end{eqnarray}
+We split the $t$ variable and the $\bvec{u}_p$ vector and then we integrate, the relation then becomes: 
+ \begin{equation}
+ \bvec{u}_p =  \bvec{U} \left( 1 - exp \left( - \frac{18 \mu_{f} t  }{ d_p^2 \rho_{p}} \right) \right) = \bvec{U} (1- e^{- t / \tau_p})
+ \end{equation}
+The expression $\tau_p$ for a Sokes flow is equal to: 
+\begin{equation}
+  \tau_p =  - \frac{\rho_{p} d_p^2}{18 \mu_{f}}
+\end{equation}
+
+\bibliographystyle{apalike}
+\bibliography{biblio}
+
+\end{document}
